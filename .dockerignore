@@ -1,0 +1,24 @@
+# Build output and dependencies are recreated inside the image.
+node_modules
+.next
+out
+build
+coverage
+
+# Tests and tooling
+e2e
+playwright-report
+test-results
+blob-report
+.husky
+.vscode
+
+# Git and docs
+.git
+.github
+*.md
+
+# Secrets: runtime values come from the platform, never from the image.
+.env
+.env.*
+!.env.example

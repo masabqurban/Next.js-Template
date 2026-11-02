@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+/*
+  Design tokens. Components use semantic names (bg-surface, text-muted,
+  border-border, brand-*), never raw hex values, so a rebrand or a theme
+  change only touches this file.
+*/
+@theme {
+  --color-brand-50: #eef4ff;
+  --color-brand-100: #dbe6fe;
+  --color-brand-200: #bfd3fe;
+  --color-brand-300: #93b4fd;
+  --color-brand-400: #608bfa;
+  --color-brand-500: #3b65f6;
+  --color-brand-600: #2546eb;
+  --color-brand-700: #1d35d8;
+  --color-brand-800: #1e2daf;
+  --color-brand-900: #1e2c8a;
+  --color-brand-950: #171d54;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --shadow-card:
+    0 1px 2px 0 rgb(15 23 42 / 0.04), 0 4px 16px 0 rgb(15 23 42 / 0.06);
+}
+
+/*
+  Light and dark palettes follow the operating system setting. No JavaScript,
+  so there is no flash of the wrong theme before hydration.
+*/
+:root {
+  color-scheme: light dark;
+  --background: #ffffff;
+  --foreground: #0f172a;
+  --surface: #f8fafc;
+  --surface-raised: #ffffff;
+  --muted: #475569;
+  --border: #e2e8f0;
+  --ring: var(--color-brand-500);
+  --accent: var(--color-brand-600);
+  --accent-foreground: #ffffff;
+  /* Accent-coloured text (links, eyebrows, icons). Separate from --accent,
+     which is a background: the shade that works under white text is too dim
+     as text on a dark background. */
+  --link: var(--color-brand-600);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0b1120;
+    --foreground: #e2e8f0;
+    --surface: #111827;
+    --surface-raised: #172033;
+    --muted: #94a3b8;
+    --border: #1f2a3d;
+    --ring: var(--color-brand-400);
+    --accent: var(--color-brand-500);
+    --accent-foreground: #ffffff;
+    --link: var(--color-brand-300);
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-link: var(--link);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    text-rendering: optimizeLegibility;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-ring;
+  }
+
+  ::selection {
+    @apply bg-brand-200 text-brand-950;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}

@@ -13,6 +13,7 @@ A production-grade starter for **Next.js 16** with the App Router, **TypeScript*
 ## Contents
 
 - [Highlights](#highlights)
+- [Use this template](#use-this-template)
 - [Getting started](#getting-started)
 - [Scripts](#scripts)
 - [Project structure](#project-structure)
@@ -36,6 +37,40 @@ A production-grade starter for **Next.js 16** with the App Router, **TypeScript*
 | **Accessibility** | Skip link, semantic landmarks, visible focus, reduced motion, native Popover menu, axe checks in light and dark mode                                                    |
 | **Quality**       | Strict TypeScript (`noUncheckedIndexedAccess`), ESLint, Prettier, Vitest, Playwright, Husky and lint-staged                                                             |
 | **Delivery**      | GitHub Actions CI, Dependabot, multi-stage Docker image running as non-root, health check endpoint                                                                      |
+
+## Use this template
+
+**1. Create your repository.** Click **Use this template → Create a new repository** at the top of this page. Your new repository gets a clean history and no link back to this one. Or use the GitHub CLI:
+
+```bash
+gh repo create my-app --template masabqurban/Next.js-Template --private --clone
+cd my-app
+```
+
+Prefer no Git history at all? Run `npx degit masabqurban/Next.js-Template my-app`.
+
+**2. Install and run it.**
+
+```bash
+npm install
+cp .env.example .env.local    # set NEXT_PUBLIC_SITE_URL to your domain before deploying
+npm run dev                   # http://localhost:3000
+```
+
+**3. Make it yours.**
+
+- `package.json`: change `"name"` from `nextjs-template`.
+- `src/config/site.ts`: name, title, description, contact details and social links. Metadata, the sitemap, JSON-LD and the web manifest all read from here.
+- `src/app/globals.css` (colour tokens) and `src/app/icon.svg`.
+- Replace the copyright holder in `LICENSE` (or choose another license), and rewrite this README for your project.
+
+**4. Remove what you don't need.** The demo is there to show the patterns end to end. Keep the parts you'll build on and delete the rest:
+
+- Placeholder content lives in `src/features/*/data/`. Replace it with your own, or connect a CMS in `features/blog/api/posts.server.ts`.
+- Delete a whole feature by removing `src/features/<name>/` and its routes in `src/app/`. Fix whatever `npm run typecheck` reports.
+- Wire the contact form to your email provider in `src/features/contact/api/deliver.server.ts`.
+
+**5. Turn on the repository settings.** In **Settings → Code security**, enable Dependabot alerts and private vulnerability reporting (`SECURITY.md` points reporters there). CI in `.github/workflows/` runs on your first push with no secrets required. Add branch protection on `main` that requires it to pass.
 
 ## Getting started
 
